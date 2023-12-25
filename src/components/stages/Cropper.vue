@@ -1,17 +1,11 @@
 <script>
 import Icon3 from '@/components/icons/Icon2.vue'
-import Icon7 from '@/components/icons/Icon7.vue'
-import Icon15 from '@/components/icons/Icon15.vue'
-import Icon16 from '@/components/icons/Icon16.vue'
 import PanelList from '@/components/panels/PanelList.vue'
 
 export default {
   name: "Cropper",
   components: {
     Icon3,
-    Icon7,
-    Icon15,
-    Icon16,
     PanelList,
   },
   mounted: function() {

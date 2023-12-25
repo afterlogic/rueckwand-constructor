@@ -6,7 +6,7 @@ import Icon10 from '@/components/icons/Icon10.vue'
 import Icon11 from '@/components/icons/Icon11.vue'
 import Icon12 from '@/components/icons/Icon12.vue'
 
-import { mapState, mapActions } from 'pinia'
+import { mapState } from 'pinia'
 import { useMainStore } from '/src/stores/main.js'
 
 import materials from '/src/materialsData.js'
@@ -62,7 +62,7 @@ export default {
             <div class="checkout-panel__block checkout-panel__plates">
               <span class="checkout-panel__block-title">Deine Rückwände:</span>
 
-              <div class="checkout-panel__plates-list" v-for="(panel, index) in panels" style="--plates-list-height: 53px;">
+              <div class="checkout-panel__plates-list" v-for="(panel, index) in panels" :key="panel.id" style="--plates-list-height: 53px;">
                 <div class="checkout-panel__plate">
                   <div class="checkout-panel__plate-index label">{{ index + 1 }}</div>
                   <div class="checkout-panel__text">{{ panel.width }} x {{ panel.height }} cm</div>
@@ -78,7 +78,7 @@ export default {
                 <div class="material__text-group">
                   <div class="material__title" :data-value="selectedMaterial.alias">
                     {{ selectedMaterial.title }}
-                    <div class="material__label label whitespace-nowrap" v-for="label in selectedMaterial.labels" style="color: black; background: #DBDBDB">{{ label }}</div>
+                    <div class="material__label label whitespace-nowrap" v-for="label in selectedMaterial.labels" :key="label" style="color: black; background: #DBDBDB">{{ label }}</div>
                   </div>
                   <div class="material__content">
                     <div class="material__description">{{ selectedMaterial.description }}</div>

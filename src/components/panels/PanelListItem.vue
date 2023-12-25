@@ -23,9 +23,11 @@ export default {
   },
   watch: {
     width(v) {
+      // eslint-disable-next-line 
       this.panel.width = v
     },
     height(v) {
+      // eslint-disable-next-line 
       this.panel.height = v
     }
   },

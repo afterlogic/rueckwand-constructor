@@ -32,13 +32,13 @@ export default {
   },
   watch: {
     panels: {
-      handler(newValue, oldValue) {
+      handler(panels) {
         let maxHeight = 0
         let minHeight = 0
         let overalWidth = 0
 
         // calculate bounding box for all panels
-        this.panels.forEach(item => {
+        panels.forEach(item => {
           maxHeight = maxHeight < item.height ? item.height : maxHeight
           minHeight = (minHeight === 0 || minHeight > item.height) ? item.height : minHeight
           
@@ -47,7 +47,7 @@ export default {
         
         // culculate offsets for each panels
         let offsetX = 0
-        this.panels.forEach(item => {
+        panels.forEach(item => {
           item.offsetX = offsetX
           offsetX += parseInt(item.width) // increase offset for next panel in list
 

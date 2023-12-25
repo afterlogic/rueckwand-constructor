@@ -13,7 +13,7 @@ export default {
     <div class="material__text-group">
       <div class="material__title" :data-value="material.alias">
         {{ material.title }}
-        <div v-for="label in material.labels" class="material__label label whitespace-nowrap">{{ label }}</div>
+        <div v-for="label in material.labels" :key="label" class="material__label label whitespace-nowrap">{{ label }}</div>
       </div>
       <div class="material__content">
         <div class="material__description">{{ material.description }}</div>

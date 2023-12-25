@@ -7,7 +7,7 @@ import StageMaterials from '@/components/stages/Materials.vue'
 import StageAccessories from '@/components/stages/Accessories.vue'
 import StageCheckout from '@/components/stages/Checkout.vue'
 
-import { mapState, mapActions } from 'pinia'
+import { mapActions } from 'pinia'
 import { useMainStore } from '/src/stores/main.js'
 
 export default {

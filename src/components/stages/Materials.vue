@@ -15,8 +15,7 @@ export default {
     this.$el.setAttribute('vueComponent', this.$options.name)
   },
   watch: {
-    active(v) {
-      // if (
+    active() {
     }
   },
 }

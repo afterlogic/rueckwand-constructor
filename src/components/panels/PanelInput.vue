@@ -1,9 +1,9 @@
 <script>
 export default {
   props: {
-    modelValue: 0,
+    modelValue: { type: Number, default: 0 },
     label: { type: String, default: 'XXX' },
-    limit: { type: Array, default: [0, 0] },
+    limit: { type: Array, default: () => [0, 0] },
   },
   computed: {
     size_mm() {
