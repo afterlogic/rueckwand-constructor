@@ -7,7 +7,7 @@ import Icon11 from '@/ui/icons/Icon11.vue'
 import Icon12 from '@/ui/icons/Icon12.vue'
 
 import { mapState } from 'pinia'
-import { useMainStore } from '/src/stores/main.js'
+import { useMainStore } from '@/infrastracture/stores/main.js'
 
 import materials from '@/infrastracture/materialsData.js'
 

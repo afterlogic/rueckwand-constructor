@@ -6,19 +6,19 @@ export default {
   name: 'Materials',
   components: {
     Icon3,
-    MaterialsList
+    MaterialsList,
   },
   props: {
-    active: { type: Boolean, default: false }
+    active: { type: Boolean, default: false },
   },
   mounted: function () {
     this.$el.setAttribute('vueComponent', this.$options.name)
   },
   watch: {
-    active(v) {
+    active() {
       // if (
-    }
-  }
+    },
+  },
 }
 </script>
 

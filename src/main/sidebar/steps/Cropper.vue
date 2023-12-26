@@ -1,6 +1,6 @@
 <script>
-import Icon3 from '@/components/icons/Icon2.vue'
-import PanelList from '@/components/panels/PanelList.vue'
+import Icon3 from '@/ui/icons/Icon2.vue'
+import PanelList from './cropper/PanelList.vue'
 
 export default {
   name: 'Cropper',

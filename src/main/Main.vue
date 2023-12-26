@@ -1,5 +1,5 @@
 <script>
-import Icon1 from './icons/Icon1.vue'
+import Icon1 from '@/ui/icons/Icon1.vue'
 // import Icon13 from './icons/Icon13.vue'
 // import Icon14 from './icons/Icon14.vue'
 

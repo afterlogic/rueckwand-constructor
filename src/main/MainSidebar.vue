@@ -8,7 +8,7 @@ import StageAccessories from './sidebar/steps/Accessories.vue'
 import StageCheckout from './sidebar/steps/Checkout.vue'
 
 import { mapActions } from 'pinia'
-import { useMainStore } from '/src/stores/main.js'
+import { useMainStore } from '@/infrastracture/stores/main.js'
 
 export default {
   name: 'MainPanel',

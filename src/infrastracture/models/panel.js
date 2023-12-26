@@ -9,6 +9,6 @@ function CPanel() {
   this.active = false
 }
 
-CPanel.prototype.populate = function (aData) {}
+CPanel.prototype.populate = function () {}
 
 export default CPanel
