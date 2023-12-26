@@ -1,18 +1,18 @@
 <script>
-import Icon7 from '@/components/icons/Icon7.vue'
-import Icon8 from '@/components/icons/Icon8.vue'
-import Icon9 from '@/components/icons/Icon9.vue'
-import Icon10 from '@/components/icons/Icon10.vue'
-import Icon11 from '@/components/icons/Icon11.vue'
-import Icon12 from '@/components/icons/Icon12.vue'
+import Icon7 from '@/ui/icons/Icon7.vue'
+import Icon8 from '@/ui/icons/Icon8.vue'
+import Icon9 from '@/ui/icons/Icon9.vue'
+import Icon10 from '@/ui/icons/Icon10.vue'
+import Icon11 from '@/ui/icons/Icon11.vue'
+import Icon12 from '@/ui/icons/Icon12.vue'
 
 import { mapState } from 'pinia'
 import { useMainStore } from '/src/stores/main.js'
 
-import materials from '/src/materialsData.js'
+import materials from '@/infrastracture/materialsData.js'
 
 export default {
-  name: "Checkout",
+  name: 'Checkout',
   components: {
     Icon7,
     Icon8,
@@ -21,13 +21,13 @@ export default {
     Icon11,
     Icon12,
   },
-  mounted: function() {
+  mounted: function () {
     this.$el.setAttribute('vueComponent', this.$options.name)
   },
   computed: {
     ...mapState(useMainStore, ['panels', 'currentMaterialId']),
     selectedMaterial() {
-      return materials.find(item => item.id === this.currentMaterialId )
+      return materials.find((item) => item.id === this.currentMaterialId)
     },
   },
   // methods: {
@@ -39,10 +39,8 @@ export default {
 <template>
   <section class="stage main__checkout checkout" id="stage-4">
     <div class="stage__container container container_align_start container_justify_between">
-
       <div class="col stage__panel">
         <div class="stage__panel-inner">
-
           <div class="stage__information stage__information-checkout">
             <span class="stage__index"><Icon7 /></span>
             <h2 class="stage__title title title_color_grey"><strong>Fertig️.</strong></h2>
@@ -62,7 +60,12 @@ export default {
             <div class="checkout-panel__block checkout-panel__plates">
               <span class="checkout-panel__block-title">Deine Rückwände:</span>
 
-              <div class="checkout-panel__plates-list" v-for="(panel, index) in panels" :key="panel.id" style="--plates-list-height: 53px;">
+              <div
+                class="checkout-panel__plates-list"
+                v-for="(panel, index) in panels"
+                :key="panel.id"
+                style="--plates-list-height: 53px"
+              >
                 <div class="checkout-panel__plate">
                   <div class="checkout-panel__plate-index label">{{ index + 1 }}</div>
                   <div class="checkout-panel__text">{{ panel.width }} x {{ panel.height }} cm</div>
@@ -74,11 +77,18 @@ export default {
               <span class="checkout-panel__block-title">Dein Material:</span>
 
               <div class="checkout-panel__material-item material material_checkout">
-                <img class="material__image" :src="selectedMaterial.thumbUrl">
+                <img class="material__image" :src="selectedMaterial.thumbUrl" />
                 <div class="material__text-group">
                   <div class="material__title" :data-value="selectedMaterial.alias">
                     {{ selectedMaterial.title }}
-                    <div class="material__label label whitespace-nowrap" v-for="label in selectedMaterial.labels" :key="label" style="color: black; background: #DBDBDB">{{ label }}</div>
+                    <div
+                      class="material__label label whitespace-nowrap"
+                      v-for="label in selectedMaterial.labels"
+                      :key="label"
+                      style="color: black; background: #dbdbdb"
+                    >
+                      {{ label }}
+                    </div>
                   </div>
                   <div class="material__content">
                     <div class="material__description">{{ selectedMaterial.description }}</div>
@@ -88,18 +98,24 @@ export default {
               </div>
             </div>
 
-            <div class="checkout-panel__block checkout-panel__accessories" style="display: none;">
+            <div class="checkout-panel__block checkout-panel__accessories" style="display: none">
               <span class="checkout-panel__block-title">Deine konfiguierten Steckdosen:</span>
 
               <div class="checkout-panel__accessories-list"></div>
             </div>
 
-            <hr class="checkout-panel__hr">
+            <hr class="checkout-panel__hr" />
 
-            <a href="javascript:void(0);" class="checkout-panel__button button checkout-panel__order-trigger">In den Warenkorb</a>
+            <a
+              href="javascript:void(0);"
+              class="checkout-panel__button button checkout-panel__order-trigger"
+              >In den Warenkorb</a
+            >
 
             <div class="checkout-panel__feedback-block icon-text">
-              <img src="//rueckwand24.com/cdn/shop/t/332/assets/people.png?v=16655297016150515611697114469">
+              <img
+                src="//rueckwand24.com/cdn/shop/t/332/assets/people.png?v=16655297016150515611697114469"
+              />
               <span>Mehr als <strong>1.976 mal</strong> in den letzten 2 Monaten gekauft</span>
             </div>
 

@@ -1,11 +1,11 @@
 <script>
 import { mapState, mapActions } from 'pinia'
-import { useMainStore } from '/src/stores/main.js'
+import { useMainStore } from '@/infrastracture/stores/main.js'
 
-import PanelItem from '@/components/panels/PanelItem.vue'
+import PanelItem from './cropper/PanelItem.vue'
 
-import { sourceImageData } from '@/imageData.js'
-import { get2xImageData } from '@/utils/common.js'
+import { sourceImageData } from '@/infrastracture/imageData.js'
+import { get2xImageData } from '@/infrastracture/utils/common.js'
 
 const imageElement = document.createElement('img')
 imageElement.src = sourceImageData
@@ -38,16 +38,16 @@ export default {
         let overalWidth = 0
 
         // calculate bounding box for all panels
-        panels.forEach(item => {
+        panels.forEach((item) => {
           maxHeight = maxHeight < item.height ? item.height : maxHeight
-          minHeight = (minHeight === 0 || minHeight > item.height) ? item.height : minHeight
-          
+          minHeight = minHeight === 0 || minHeight > item.height ? item.height : minHeight
+
           overalWidth += parseInt(item.width) + parseInt(this.pannelsGap) * 2
         })
-        
+
         // culculate offsets for each panels
         let offsetX = 0
-        panels.forEach(item => {
+        panels.forEach((item) => {
           item.offsetX = offsetX
           offsetX += parseInt(item.width) // increase offset for next panel in list
 
@@ -71,7 +71,7 @@ export default {
       },
       // immediate: true,
       deep: true,
-    }
+    },
   },
   computed: {
     ...mapState(useMainStore, ['panels']),
@@ -90,17 +90,13 @@ export default {
       }
 
       return zoom
-    }
+    },
     // image2xData() {
     //   return get2xImageData(imageElement)
     // },
   },
   methods: {
-    ...mapActions(useMainStore, [
-      'setMaxHeight',
-      'setMinHeight',
-      'activatePanel',
-    ]),
+    ...mapActions(useMainStore, ['setMaxHeight', 'setMinHeight', 'activatePanel']),
     toggleOriginalSize() {
       this.originalSize = !this.originalSize
     },
@@ -108,8 +104,8 @@ export default {
       if (!panel.active) {
         this.activatePanel(panel.id)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -123,30 +119,46 @@ export default {
         <i class="button__icon icon-r24-multiply"></i> <span>Zurücksetzen</span>
       </span>
       <span class="cropper__button cropper__zoom" @click="toggleOriginalSize">
-        <i class="button__icon" :class="{'icon-r24-zoom': !originalSize, 'icon-r24-zoom-out': originalSize}"></i> <span>Zoom</span>
-      </span> 
+        <i
+          class="button__icon"
+          :class="{ 'icon-r24-zoom': !originalSize, 'icon-r24-zoom-out': originalSize }"
+        ></i>
+        <span>Zoom</span>
+      </span>
     </div>
 
     <div class="cropper__buttons cropper__buttons_top buttons-group">
-      <a href="javascript: void(0);" class="cropper__button cropper__preview-button cropper__preview-trigger">
+      <a
+        href="javascript: void(0);"
+        class="cropper__button cropper__preview-button cropper__preview-trigger"
+      >
         <i class="button__icon icon-r24-fullscreen-new"></i> <span>Vollbild</span>
       </a>
     </div>
 
-    
     <!-- <img ref="image" :src="image2xData" style="transform: scale(0.4); border: 1px solid #000;" /> -->
     <!-- style="min-height: var(--content-col-height);" -->
-    
+
     <div class="cropper__gradient cropper__gradient_right"></div>
     <div class="cropper__gradient cropper__gradient_left"></div>
 
-    <div class="panels_viewer_area" ref="viewerArea" :class="{'panels_viewer_area__scroll': originalSize}">
-      <div class="panels_viewer_area__inner" ref="viewerAreaInner" :style="'transform: scale(' + zoom + ')'">
-        <PanelItem v-for="(panel, index) in panels" :key="panel.id"
+    <div
+      class="panels_viewer_area"
+      ref="viewerArea"
+      :class="{ panels_viewer_area__scroll: originalSize }"
+    >
+      <div
+        class="panels_viewer_area__inner"
+        ref="viewerAreaInner"
+        :style="'transform: scale(' + zoom + ')'"
+      >
+        <PanelItem
+          v-for="(panel, index) in panels"
+          :key="panel.id"
           :panel="panel"
           :index="index"
           :imageElement="imageElement"
-          :style="'margin: ' + pannelsGap +'px;'"
+          :style="'margin: ' + pannelsGap + 'px;'"
           @click="clickPanel(panel)"
         />
       </div>
@@ -247,7 +259,7 @@ export default {
     overflow-y: hidden;
     justify-content: left;
     //align-items: bottom;
-    
+
     & .panels_viewer_area__inner {
       transform-origin: left;
     }
@@ -258,7 +270,6 @@ export default {
     align-items: flex-end;
     // transform-origin: left center;
   }
-
 }
 
 .cropper__gradient {
@@ -276,7 +287,7 @@ export default {
   &.cropper__gradient_left {
     left: 0;
   }
-} 
+}
 .panel {
   // display: inline-block;
   flex-shrink: 0;
@@ -287,7 +298,7 @@ export default {
   border: 1px solid #000;
 
   &__active {
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   }
 }
 </style>

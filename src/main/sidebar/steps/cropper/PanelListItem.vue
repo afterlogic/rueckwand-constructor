@@ -1,15 +1,15 @@
 <script>
-import Icon15 from '@/components/icons/Icon15.vue'
-import PanelInput from '@/components/panels/PanelInput.vue'
+import Icon15 from '@/ui/icons/Icon15.vue'
+import PanelInput from './PanelInput.vue'
 
 export default {
   components: {
     Icon15,
-    PanelInput,
+    PanelInput
   },
   props: {
     panel: { type: Object, required: true },
-    index: { type: Number, required: true },
+    index: { type: Number, required: true }
   },
   mounted() {
     this.width = 100
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       width: 0,
-      height: 0,
+      height: 0
     }
   },
   watch: {
@@ -40,13 +40,13 @@ export default {
     deletePanel(event) {
       event.stopPropagation()
       this.$emit('remove', this.panel.id)
-    },
+    }
   }
 }
 </script>
 
 <template>
-  <div class="plate-panel" :class="{'plate-panel_active': panel.active}">
+  <div class="plate-panel" :class="{ 'plate-panel_active': panel.active }">
     <div class="plate-panel__warning icon-text">
       <i class="plate-panel__warning-icon icon">
         <Icon15 />
@@ -58,7 +58,7 @@ export default {
     <div class="plate-panel__index-label label">
       <span class="label__name">{{ number }}</span>
     </div>
-    
+
     <PanelInput v-model="width" :limit="[10, 300]" label="Breite" />
     <div class="plate-panel__separator">
       <span>x</span>
